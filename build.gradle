@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.6.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.oklimenko'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	lombokVersion = '1.18.12'
+}
+
+springBoot {
+	mainClassName = 'com.oklimenko.dockerspring.DockerSpringApplication'
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation "org.projectlombok:lombok:${lombokVersion}"
+
+	//	testing
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation "org.projectlombok:lombok:${lombokVersion}"
+
+	//	annotations
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+	testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+}
+
+test {
+	useJUnitPlatform()
+}

@@ -1,0 +1,28 @@
+FROM openjdk:11.0.6-jre-slim
+MAINTAINER Oleg Klimenko oklimenko@gmail.com
+
+VOLUME /tmp
+ARG DEPENDENCY=build/dependency
+ENV MAIN_FULL_CLASS_NAME=com.oklimenko.dockerspring.DockerSpringApplication
+#If the application Java dependencies don’t change, then the first layer (from BOOT-INF/lib) will not change
+#so the build will be faster
+COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
+COPY ${DEPENDENCY}/META-INF /app/META-INF
+COPY ${DEPENDENCY}/BOOT-INF/classes /app
+
+#COPY ${JAR_FILE} app.jar
+#ENTRYPOINT ["sh", "-c", "exec java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
+
+
+
+# 1) just remember!!! use sh -c if any of variables to be processed!
+# 2) ${0} for the "command" (in this case the first program argument) and ${@} for the "command arguments" (the rest of the program arguments).
+ENTRYPOINT ["sh","-c","exec java ${JAVA_OPTS} -cp app:app/lib/* ${MAIN_FULL_CLASS_NAME} ${0} ${@}"]
+
+
+
+#CMD ["${MAIN_FULL_CLASS_NAME}"]
+#${MAIN_FULL_CLASS_NAME}]
+
+#ENTRYPOINT ["sh", "-c", "exec java ${JAVA_OPTS} -jar /app.jar ${0} ${@}"]
+#ENTRYPOINT ["sh", "-c", "exec java ${JAVA_OPTS} -cp app:app/lib/* ${MAIN_FULL_CLASS_NAME}"]
