@@ -1,2 +1,27 @@
 server:
   port: 8000
+spring:
+  jpa:
+    open-in-view: false
+  datasource:
+    url: ${DATABASE_URI}
+#    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=user_domain
+#    url: ${DATABASE_USER}
+    username: ${DATABASE_USER}
+#    username: postgres
+    password: ${DATABASE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    jpa:
+      show-sql: true
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQL95Dialect
+          hbm2ddl.auto: validate
+          show_sql: true
+          format_sql: true
+    flyway:
+      enabled: false
+#      schemas: user_domain
+#      url: jdbc:postgresql://localhost:5432/postgres
+#      user: ${DATABASE_USER}
+#      password: ${DATABASE_PASSWORD}
