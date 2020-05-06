@@ -1,0 +1,1 @@
+helm install myapp ./hello-chart --atomic

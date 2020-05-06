@@ -1,0 +1,21 @@
+Инструкция:
+0. Если компьютер уснул-проснулся, то сбиваются часы и т.п. Нужно перезапустить кубик.
+minikube stop
+minikube start
+eval $(minikube -p minikube docker-env)
+
+1. Установка
+    helm install myapp ./hello-chart --atomic
+2.
+
+
+while true; do ab -n 50 -c 5 -H'Host: hello.world' http://192.168.64.2/app/db ; \
+ab -n 5 -c 5 -H'Host: hello.world' http://192.168.64.2/app/user/not_existing ; \
+curl --location --request POST 'http://192.168.64.2/app/user' \
+--header 'Content-Type: application/json' --header 'Host: hello.world' \
+--data-raw '{ "username": "oklimenko", "firstName": "Oleg", "lastName": "KLimenko", "email": "oklimenko@gmail.com", "phone": "+79260437121"}'; \
+curl --location --request PUT 'http://192.168.64.2/app/user/1' \
+--header 'Content-Type: application/json' --header 'Host: hello.world' \
+--data-raw '{ "firstName": "Oleg","lastName": "KLimenko2","email": "oklimenko@gmail.com","phone": "+79260437121"}'; \
+curl --location --request GET --header 'Host: hello.world' 'http://192.168.64.2/app/user/1'
+sleep 3; done

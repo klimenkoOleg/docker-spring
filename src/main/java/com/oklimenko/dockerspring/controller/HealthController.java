@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @RestController
 public class HealthController {
@@ -33,6 +35,13 @@ public class HealthController {
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(userService.createUser(request));
+    }
+
+    @GetMapping("/db")
+    public ResponseEntity<List<GetUserResponse>> getAll() {
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(userService.getAll());
     }
 
     @GetMapping("/user/{userId}")

@@ -7,10 +7,16 @@ import com.oklimenko.dockerspring.entity.UserEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface UserMapper {
     UserEntity map(CreateUserRequest request);
+
     void map(@MappingTarget UserEntity userEntity, UpdateUserRequest request);
-    UserEntity map(UpdateUserRequest request);
+
     GetUserResponse map(UserEntity request);
+
+    List<GetUserResponse> map(List<UserEntity> all);
+
 }

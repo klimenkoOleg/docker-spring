@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: hello-config
+data:
+  GREETING: Bonjour
+#  DATABASE_URI: jdbc:postgresql://postgres:5432/docker-spring
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: hello-secret
+type: Opaque
+data:
+  DATABASE_PASSWORD: {{ printf "%s" .Values.externalPostgresql.postgresqlPassword | b64enc }}
+#  DATABASE_PASSWORD: cGFzc3dk
+  DATABASE_USER: {{ printf "%s" .Values.externalPostgresql.postgresqlUsername | b64enc }}
+#  DATABASE_USER: bXl1c2Vy
+  DATABASE_URI: {{ printf "jdbc:postgresql://%s:%s/%s" (include "postgresql.fullname" .) .Values.postgresql.service.port .Values.externalPostgresql.postgresqlDatabase  | b64enc | quote }}
