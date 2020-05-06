@@ -1,6 +1,6 @@
 # docker-spring
 
-<h1>Описание 
+<h1>Описание</h1>
 
 1. Хелм чарт находится в директории<br>
 chart-dir-to-run
@@ -30,7 +30,7 @@ chart-dir-to-run/stress-screens <br>
 2. RPS
 3. Error Rate - количество 500ых ответов
 
-<h1> General description:
+<h1> General description</h1>
 
 
 1. Based on Java 11 / Spring Boot 2.2.6.RELEASE
