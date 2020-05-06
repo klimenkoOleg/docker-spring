@@ -17,7 +17,7 @@ spec:
             - |
               apk --no-cache add curl; \
               while true; \
-                do ab -n 50 -c 5 -H'Host: hello.world' http://nginx-nginx-ingress-controller/app/db ; \
+                do ab -n 20 -c 5 -H'Host: hello.world' http://nginx-nginx-ingress-controller/app/db ; \
                 ab -n 5 -c 5 -H'Host: hello.world' http://nginx-nginx-ingress-controller/app/user/not_existing ; \
                 curl --location --request POST 'http://nginx-nginx-ingress-controller/app/user' --header 'Content-Type: application/json' --header 'Host: hello.world' --data-raw '{ "username": "oklimenko", "firstName": "Oleg", "lastName": "KLimenko", "email": "oklimenko@gmail.com", "phone": "+79260437121"}'; \
                 curl --location --request PUT 'http://nginx-nginx-ingress-controller/app/user/1' --header 'Content-Type: application/json' --header 'Host: hello.world' --data-raw '{ "firstName": "Oleg","lastName": "KLimenko2","email": "oklimenko@gmail.com","phone": "+79260437121"}'; \

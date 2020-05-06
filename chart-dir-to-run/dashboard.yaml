@@ -23,7 +23,7 @@ data:
       "editable": true,
       "gnetId": null,
       "graphTooltip": 0,
-      "id": 27,
+      "id": 2,
       "links": [],
       "panels": [
         {
@@ -703,7 +703,7 @@ data:
             {
               "expr": "histogram_quantile(1, \n      sum by (le, exported_endpoint) \n         (rate(app_request_latency_seconds_seconds_bucket[1m]))\n) * 1000\n",
               "interval": "",
-              "legendFormat": "quantile 1",
+              "legendFormat": "{{exported_endpoint}}",
               "refId": "A"
             }
           ],
@@ -868,5 +868,5 @@ data:
       "variables": {
         "list": []
       },
-      "version": 2
+      "version": 1
     }

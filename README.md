@@ -18,8 +18,17 @@ chart-dir-to-run/dashboard.yaml
 chart-dir-to-run/stresstest.yaml 
 
 6. Скриншоты дашборды после нагрузки лежат в директории<br>
-chart-dir-to-run/stress-screens
+chart-dir-to-run/stress-screens <br>
 
+В левом столбце дашбордов - метрики с разбивкой по API методам:
+1. Latency (response time) с квантилями по 0.5, 0.95, 0.99, max
+2. RPS
+3. Error Rate - количество 500ых ответов
+
+В правом столбце - метрики в целом по сервису, взятые с nginx-ingress-controller:<br>
+1. Latency (response time) с квантилями по 0.5, 0.95, 0.99, max
+2. RPS
+3. Error Rate - количество 500ых ответов
 
 <h1> General description:
 
